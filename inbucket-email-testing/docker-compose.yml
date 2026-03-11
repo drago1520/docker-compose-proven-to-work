@@ -1,0 +1,19 @@
+services:
+  inbucket:
+    image: inbucket/inbucket:latest
+    container_name: acme-inbucket
+    ports:
+      - "18080:9000" # Web UI
+      - "12500:2500" # SMTP
+      - "11100:1100" # POP3
+      - "11430:1430" # IMAP
+    environment:
+      - INBUCKET_SMTP_DISABLED=false
+      - INBUCKET_POP3_DISABLED=false
+      - INBUCKET_IMAP_DISABLED=false
+      - INBUCKET_WEB_DISABLED=false
+      - INBUCKET_WEB_BASE_PATH=/
+      - INBUCKET_WEB_COOKIE_AUTH_KEY=acme-dev-secret-key
+    volumes:
+      - ./inbucket_data:/var/inbucket
+    restart: unless-stopped

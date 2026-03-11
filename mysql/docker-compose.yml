@@ -1,0 +1,12 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-emart-dev
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_ROOT_PASSWORD: "jN9$wQ2!xV7#pL4@tR8%kM3^zF6&cH1*"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    restart: unless-stopped
